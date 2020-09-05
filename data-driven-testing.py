@@ -24,7 +24,7 @@ def test_positive_cases(number):
 
 
 @pytest.parameterize('number', [-5, -22, -13, -54])
-def test_positive_cases(number):
+def test_negative_cases(number):
   assert is_positive(number) == False
 
   
