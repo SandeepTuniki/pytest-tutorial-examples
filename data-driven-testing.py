@@ -26,3 +26,13 @@ def test_positive_cases(number):
 @pytest.parameterize('number', [-5, -22, -13, -54])
 def test_positive_cases(number):
   assert is_positive(number) == False
+
+  
+@pytest.fixture
+def positive_num():
+  return 23
+
+@pytest.fixture(params=[23, 10, 45, 0, 11])
+def positive_nums(request):
+  return request.param
+
