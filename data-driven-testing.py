@@ -36,3 +36,21 @@ def positive_num():
 def positive_nums(request):
   return request.param
 
+
+@pytest.fixture(params=['testing', 'api', 'automation'])
+def valid_search_query(request):
+  return request.param
+
+@pytest.fixture(params=['sdfas', None])
+def invalid_search_query(request):
+  return request.param
+
+def test_valid_params(valid_search_query):
+  params = {q: valid_search_query}
+  r = request.get('https://google.com', params=params)
+  assert r.status_code == 200
+
+def test_invalid_params(invalid_search_query):
+  params = {q: invalid_search_query}
+  r = request.get('https://google.com', params=params)
+  assert r.status_code == 400
